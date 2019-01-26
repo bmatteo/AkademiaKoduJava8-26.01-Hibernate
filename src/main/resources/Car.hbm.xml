@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="pl.academy.code.model.Car" table="tcar">
+        <id name="id" column="id" type="int">
+            <generator class="native"/>
+        </id>
+        <property name="brand" column="brand" type="string"/>
+        <property name="model" column="model" type="string"/>
+        <property name="power" column="power" type="int"/>
+        <property name="capacity" column="capacity" type="double"/>
+        <property name="date" column="date" type="date"/>
+    </class>
+</hibernate-mapping>
