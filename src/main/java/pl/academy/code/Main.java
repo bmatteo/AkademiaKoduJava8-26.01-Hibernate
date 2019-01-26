@@ -7,7 +7,10 @@ import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 import pl.academy.code.model.Car;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
+import java.util.List;
 
 public class Main {
     private static SessionFactory factory;
@@ -23,6 +26,10 @@ public class Main {
         car.setDate(new Date());
 
         Main.persistCar(car);
+
+        System.out.println(Main.getCars());
+
+        System.exit(0);
     }
 
     public static void persistCar(Car car) {
@@ -37,5 +44,18 @@ public class Main {
         } finally {
             session.close();
         }
+    }
+
+    public static List<Car> getCars() {
+        Session session = Main.factory.openSession();
+
+        List<Car> result = new ArrayList<Car>();
+        List cars = session.createQuery("FROM pl.academy.code.model.Car").list();
+
+        for(Iterator iterator = cars.iterator(); iterator.hasNext();) {
+            Car c = (Car) iterator.next();
+            result.add(c);
+        }
+        return result;
     }
 }
